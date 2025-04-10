@@ -14,21 +14,52 @@
 
 // func: is there letter in the word?
 
-const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
+//max 15 letters in word;
+//const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
+const wordsArray = ["Succsess"];
 
-let chosenWord;
+const chosenWord = (wordsArray[Math.floor(Math.random() * wordsArray.length)]).toUpperCase(); // picking a random element
 
-let attemptsLeft = 6;
+alert(chosenWord);
+
+let guessingWord = initGuessingWord(chosenWord); // array of letters of the word player is guessing
+
+let attemptsLeft = 7;
+
 
 let isGameOver = false;
 
-let lettersNotGuessed = [
+let errorMessage = null;
+
+let hangmanFrames = [
+    " ____\n|   ☒\n|   /|\\\n|   / \\\n|_______", //7
+    " ____\n|   O\n|   /|\\\n|   / \\\n|_______", //6
+    " ____\n|   O\n|   /|\\\n|   /   \n|_______", //5  ____      ____
+    " ____\n|   O\n|   /|\\\n|       \n|_______", //4 |         |   ☒
+    " ____\n|   O\n|   /|  \n|       \n|_______", //3 |     --> |  /|\
+    " ____\n|   O\n|    |  \n|       \n|_______", //2 |         |  / \
+    " ____\n|   O\n|       \n|       \n|_______", //1 |_____    |_____
+    " ____\n|    \n|       \n|       \n|_______", //0
+];
+
+const hangamWonFrame = " \n٩(◕‿◕)۶\n     \\ | /\n      / \\\n___________";//7
+
+
+let lettersAvaliable = [
     "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", 
     "A", "S", "D", "F", "G", "H", "J", "K", "L", 
     "Z", "X", "C", "V", "B", "N", "M",
 ]; //3 rows, 9 collums
 
-function drawLettersLeft(lettersArray){
+function initGuessingWord(chosenWord){
+    let wordEmptyTemplate = [];
+    for (let i = 0; i < chosenWord.length; i++) {
+        wordEmptyTemplate.push("_");
+    }
+    return wordEmptyTemplate;
+}
+
+function drawAvailableLetters(lettersArray){
     let msgBuilder = "Letters left:\n|  "; // line start
     for(let i = 0; i < lettersArray.length; i++){
         msgBuilder += lettersArray[i] + "  |  ";
@@ -39,30 +70,141 @@ function drawLettersLeft(lettersArray){
     return msgBuilder;
 }
 
-function replaceLetterWithEmpty(input, lettersArray){
+function drawGuessingWord(){
+    let row = "{ "
+   for(letter of guessingWord){
+    row += " [" + letter + "] ";
+   }
+   return row += " }";
+}
+
+function replaceLettersInRender(input, lettersArray){
     for(let i = 0; i < lettersArray.length; i++){
         if (lettersArray[i] === input){
             lettersArray[i] = "☒";
             console.log(lettersArray[i]);
         }
     }
+
+}
+function isAvailable(input){
+    for(letter of lettersAvaliable){
+        if(letter === input) return true;
+    }
+    return false;
+}
+
+function writeLetterIfExists(userInput){
+    isExists = false;
+    for (let i = 0; i < chosenWord.length; i++) {
+        if(chosenWord[i] === userInput){
+            guessingWord[i] = userInput;
+            isExists = true;
+            console.log(chosenWord[i]);
+        }
+    }
+    return isExists;
 }
 
 function checkCorrectInput(userInput){ // check user input for mistakes
-    
+    if(userInput === "EXIT" || userInput === "END"){
+        isGameOver = true;
+        alert("You exit the game. Thank you for playing!");
+        return null;
+    } else {
+            return checkErrors(userInput);
+        }
 }
 
-    //alert(drawLettersLeft(lettersNotGuessed));
+function checkErrors(userInput){
+    if(isAvailable(userInput) === true){
+        if(writeLetterIfExists(userInput) === true){
+            errorMessage = "You are doing great! Continue!";
+            console.log("No errors, input: " + userInput);
+        } else {
+            attemptsLeft--;
+            errorMessage = "There is no such a letter! \n-1 attempt. Try again.";
+            console.log("Wrong letter: " + userInput);
+        }
+        
+    return userInput;
+    } else {
+        errorMessage = "Letter is not available, check the list!";
+        console.log("Error, wrong input: " + userInput);
+        return null;
+    }
+}
 
-    while(isGameOver === false){
-        replaceLetterWithEmpty(prompt(drawLettersLeft(lettersNotGuessed)), lettersNotGuessed);
-        attemptsLeft--;
 
+
+function renderWhileGaming(){
+    let msgBuilder = hangmanFrames[attemptsLeft]; // hangman frames
+    msgBuilder += ("\n" + drawGuessingWord());
+    msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
+    msgBuilder += ("\nTry to guess a letter..");
+ 
+    return msgBuilder;
+}
+
+function renderOnGameOver(){
+    let msgBuilder;
+    msgBuilder += ("\n Game over. Better luck next time."); 
+
+    return msgBuilder;
+}
+
+// function renderTextOutput(isGameOver){
+//     let msgBuilder = (`Attempts left: ${attemptsLeft}`);
+//     if(errorMessage !== null){
+//         msgBuilder += (errorMessage + "\n"); // writing error msg if exists
+//     }
+//     msgBuilder += renderWhileGaming();
+//     //isGameOver === false ? msgBuilder += renderWhileGaming() : msgBuilder += renderOnGameOver();
+
+//     return msgBuilder;
+// }
+
+function isPlayerWon(){
+    let word = guessingWord.filter(letter => letter === "_");
+   if(word.length > 0){
+    console.log(word);
+    console.log("false");
+    return false;
+    
+   } else {
+    console.log(word);
+    console.log("true");
+    return true;
+   }
+}
+
+
+
+// ------------------------ GAME ENGINE START --------------------------
+
+
+    while(isGameOver === false && isPlayerWon() === false){
+        //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
+        let rawInput = prompt(renderWhileGaming(isGameOver));
+        let checkedInput = checkCorrectInput(rawInput.toUpperCase());
+        if(checkedInput !== null){
+            replaceLettersInRender(checkedInput, lettersAvaliable);
+        }
+        
         if( attemptsLeft < 1) {
             isGameOver = true;
         }
     }
-    alert("GameOver");
+    if(isPlayerWon() === true){
+        msgBuilder = "Congratulations, you won!\n";
+        msgBuilder += "Your word is: \n";
+        msgBuilder += (drawGuessingWord() + "\n");
+        msgBuilder += hangamWonFrame;
+        alert(msgBuilder);
+    } else {
+        alert(renderOnGameOver());
+    }
+    
     
 
 
