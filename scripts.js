@@ -17,12 +17,19 @@
 //max 15 letters in word;
 const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 //const wordsArray = ["Succsess"];
+const wordsArrayDescription = [
+    {word: "Development", hint: "Something that programmers doing"},
+    {word: "Flowers", hint: "Good gift for girls"},
+];
 
-const chosenWord = (wordsArray[Math.floor(Math.random() * wordsArray.length)]).toUpperCase(); // picking a random element
+//const chosenWord = (wordsArray[Math.floor(Math.random() * wordsArray.length)]).toUpperCase(); // picking a random element
+let randomWord = (wordsArrayDescription[Math.floor(Math.random() * wordsArray.length)]);
+randomWord.word = randomWord.word.toUpperCase();
+const chosenWord = randomWord; // picking a random element
 
 //alert(chosenWord); //for testing
 
-let guessingWord = initGuessingWord(chosenWord); // array of letters of the word player is guessing
+let guessingWord = initGuessingWord(chosenWord.word); // array of letters of the word player is guessing
 
 let attemptsLeft = 7;
 
@@ -95,8 +102,8 @@ function isAvailable(input){
 
 function writeLetterIfExists(userInput){
     isExists = false;
-    for (let i = 0; i < chosenWord.length; i++) {
-        if(chosenWord[i] === userInput){
+    for (let i = 0; i < chosenWord.word.length; i++) {
+        if(chosenWord.word[i] === userInput){
             guessingWord[i] = userInput;
             isExists = true;
         }
@@ -137,6 +144,7 @@ function checkErrors(userInput){
 
 function renderWhileGaming(){
     let msgBuilder = hangmanFrames[attemptsLeft]; // hangman frames
+    msgBuilder += ("\nHint: " + chosenWord.hint);
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
     msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
