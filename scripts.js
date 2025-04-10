@@ -10,7 +10,7 @@
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
 const wordsArrayDescription = [ // Words as an objects
-    {word: "Development", hint: "Something that programmers doing"},
+    {word: "Development", hint: "Something that programmers do"},  //Valentina: grammar error, "doing" is not correct; changed to "do"
     {word: "Flowers", hint: "Good gift for girls"},
 ];
 
