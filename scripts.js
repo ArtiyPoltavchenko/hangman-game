@@ -2,43 +2,27 @@
 // Valentina, Yasmin and Arsentii production:
 // Free Licece, use carefuly.
 
-// words array
-
-// randomizer to pick the word
-
-// user's HP (tries left)
-
-// guessed letters array
-
-// guessed letters to render
-
-// func: is there letter in the word?
+// ------------------ SETTINGS SECTION START ---------------------------
 
 //max 15 letters in word;
-const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
-//const wordsArray = ["Succsess"];
-const wordsArrayDescription = [
+
+// OUTDATED
+// const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
+
+const wordsArrayDescription = [ // Words as an objects
     {word: "Development", hint: "Something that programmers doing"},
     {word: "Flowers", hint: "Good gift for girls"},
 ];
 
-//const chosenWord = (wordsArray[Math.floor(Math.random() * wordsArray.length)]).toUpperCase(); // picking a random element
-let randomWord = (wordsArrayDescription[Math.floor(Math.random() * wordsArray.length)]);
-randomWord.word = randomWord.word.toUpperCase();
-const chosenWord = randomWord; // picking a random element
 
-//alert(chosenWord); //for testing
+
+
 
 let guessingWord = initGuessingWord(chosenWord.word); // array of letters of the word player is guessing
 
-let attemptsLeft = 7;
+let attemptsLeft = 7; // How much lives do player has -1
 
-
-let isGameOver = false;
-
-let errorMessage = null;
-
-let hangmanFrames = [
+let hangmanFrames = [ 
     " ____\n|   ☒\n|   /|\\\n|   / \\\n|_______", //7
     " ____\n|   O\n|   /|\\\n|   / \\\n|_______", //6
     " ____\n|   O\n|   /|\\\n|   /   \n|_______", //5  ____      ____
@@ -49,14 +33,34 @@ let hangmanFrames = [
     " ____\n|    \n|       \n|       \n|_______", //0
 ];
 
-const hangamWonFrame = " \n٩(◕‿◕)۶\n     \\ | /\n      / \\\n___________";//7
+const hangamWonFrame = " \n٩(◕‿◕)۶\n     \\ | /\n      / \\\n___________";
 
 
 let lettersAvaliable = [
     "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", 
     "A", "S", "D", "F", "G", "H", "J", "K", "L", 
     "Z", "X", "C", "V", "B", "N", "M",
-]; //3 rows, 9 collums
+]; //3 rows, ~9 collums
+
+// ------------------ SETTINGS SECTION END ---------------------------
+
+
+// ------------------ GLOBAL VARIABLES SECTION START ---------------------------
+
+let randomWord = (wordsArrayDescription[Math.floor(Math.random() * wordsArray.length)]);
+randomWord.word = randomWord.word.toUpperCase();
+
+const chosenWord = randomWord; // picking a random element
+
+let isGameOver = false;
+
+let errorMessage = null;
+
+//alert(chosenWord.word); //for testing
+
+// ------------------ GLOBAL VARIABLES SECTION END ---------------------------
+
+// ------------------ FUNCTIONS SECTION START ---------------------------
 
 function initGuessingWord(chosenWord){
     let wordEmptyTemplate = [];
@@ -179,6 +183,8 @@ function isPlayerWon(){
     return true;
    }
 }
+
+// ------------------ FUNCTIONS SECTION END ---------------------------
 
 
 
