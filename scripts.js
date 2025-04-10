@@ -14,9 +14,10 @@ const wordsArrayDescription = [ // Words as an objects
     {word: "Flowers", hint: "Good gift for girls"},
 ];
 
+let randomWord = (wordsArrayDescription[Math.floor(Math.random() * wordsArrayDescription.length)]);
+randomWord.word = randomWord.word.toUpperCase();
 
-
-
+const chosenWord = randomWord; // picking a random element
 
 let guessingWord = initGuessingWord(chosenWord.word); // array of letters of the word player is guessing
 
@@ -47,10 +48,7 @@ let lettersAvaliable = [
 
 // ------------------ GLOBAL VARIABLES SECTION START ---------------------------
 
-let randomWord = (wordsArrayDescription[Math.floor(Math.random() * wordsArray.length)]);
-randomWord.word = randomWord.word.toUpperCase();
 
-const chosenWord = randomWord; // picking a random element
 
 let isGameOver = false;
 
@@ -157,7 +155,7 @@ function renderWhileGaming(){
 }
 
 function renderOnGameOver(){
-    let msgBuilder;
+    let msgBuilder = "";
     msgBuilder += ("\n Game over. Better luck next time."); 
 
     return msgBuilder;
