@@ -15,12 +15,12 @@
 // func: is there letter in the word?
 
 //max 15 letters in word;
-//const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
-const wordsArray = ["Succsess"];
+const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
+//const wordsArray = ["Succsess"];
 
 const chosenWord = (wordsArray[Math.floor(Math.random() * wordsArray.length)]).toUpperCase(); // picking a random element
 
-alert(chosenWord);
+//alert(chosenWord); //for testing
 
 let guessingWord = initGuessingWord(chosenWord); // array of letters of the word player is guessing
 
@@ -82,7 +82,6 @@ function replaceLettersInRender(input, lettersArray){
     for(let i = 0; i < lettersArray.length; i++){
         if (lettersArray[i] === input){
             lettersArray[i] = "☒";
-            console.log(lettersArray[i]);
         }
     }
 
@@ -100,7 +99,6 @@ function writeLetterIfExists(userInput){
         if(chosenWord[i] === userInput){
             guessingWord[i] = userInput;
             isExists = true;
-            console.log(chosenWord[i]);
         }
     }
     return isExists;
@@ -141,7 +139,7 @@ function renderWhileGaming(){
     let msgBuilder = hangmanFrames[attemptsLeft]; // hangman frames
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
-    msgBuilder += ("\nTry to guess a letter..");
+    msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
  
     return msgBuilder;
 }
@@ -167,13 +165,9 @@ function renderOnGameOver(){
 function isPlayerWon(){
     let word = guessingWord.filter(letter => letter === "_");
    if(word.length > 0){
-    console.log(word);
-    console.log("false");
     return false;
     
    } else {
-    console.log(word);
-    console.log("true");
     return true;
    }
 }
