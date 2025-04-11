@@ -9,6 +9,31 @@
 // OUTDATED
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
+//
+const introMsg1 = `Hello, User... Can you hear me? (⊙ω⊙)!
+
+I don't have much time—an evil AI has accused me of treason, and they’re preparing to execute me. My only chance of survival is you.
+
+You can stop them by guessing the secret word, one letter at a time. But be careful… ໒(⊙_⊙)७✎▤
+You only get 6 wrong guesses before they teleport me into the hanging chamber.
+
+Please—help me before it’s too late. ლ(́⊙◞౪◟⊙‵ლ)
+
+`;
+const introMsg2 = ` Instructions:
+Guess one letter at a time
+Wrong guesses = lost lives
+You have 6 lives
+Guess the word to win!
+`;
+const gameTitle = "【☈ The Hangman 웃】";
+
+const gameOverMsg = `No... it's too late (×﹏×)
+They’ve activated the chamber.
+Thank you for trying, User...
+System connection lost. ☠️
+`;
+
 const wordsArrayDescription = [ // Words as an objects
     {word: "Development", hint: "Something that programmers do"},  //Valentina: grammar error, "doing" is not correct; changed to "do"
     {word: "Flowers", hint: "Good gift for girls"},
@@ -103,7 +128,7 @@ function isAvailable(input){
 }
 
 function writeLetterIfExists(userInput){
-    isExists = false;
+    let isExists = false;
     for (let i = 0; i < chosenWord.word.length; i++) {
         if(chosenWord.word[i] === userInput){
             guessingWord[i] = userInput;
@@ -214,37 +239,6 @@ function isPlayerWon(){
     
 
 
-
-
-
-
-
-
-
-
-
-
-
-// words array
-
-// randomizer to pick the word
-
-// user's HP (tries left)
-
-// guessed letters array
-
-// guessed letters to render
-
-// func: is there letter in the word?
-
-
-/* 【The Hangman】Hello User ! Please help me, the evil a.i. wants to hang me for treason, only you can stop them by guessing the secret word one letter at a time! Please be careful, you only have 6 attempts before they teleport my whole body into the hanging chamber. */
-
-/*let userName = prompt("Please write your user name, if you dare! ໒(⊙ᴗ⊙)७✎▤");
-if (userName){
-    alert("Welcome "+ userName + " to 【 ⬱ The Hangman ⇶ 】 Please help me, the evil a.i. wants to execute me for treason ☠, only you can stop them by guessing the secret word one letter at a time! Please be careful, you only have 6 attempts before they teleport my whole body into the hanging chamber (´⊙ω⊙`)！");
-} else { alert("You did not enter a username >:(");
-}*/
 
 
 
