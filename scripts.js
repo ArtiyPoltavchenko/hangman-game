@@ -176,6 +176,7 @@ function renderWhileGaming(){
     let msgBuilder = gameTitle + "\n";
     msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
     msgBuilder += ("\nHint: " + chosenWord.hint);
+    msgBuilder += ("\nError: " + errorMessage);
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
     msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
