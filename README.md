@@ -14,10 +14,9 @@ State Management:
 
 User Input:
 - Case-insensitive letter guessing
-
-Commands: EXIT / END to quit the game
-- ASCII Hangman Frames for visual progress
-
+- Commands: EXIT / END to quit the game
+  
+ASCII Hangman Frames for visual progress
 Hint System and dynamic letter display
 
 🚧 Challenges We Faced
