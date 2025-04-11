@@ -33,7 +33,11 @@ They’ve activated the chamber.
 Thank you for trying, User...
 System connection lost. ☠️
 `;
-
+const gameVictoryMsg = `You did it! ┏ ( ˘ω˘ )┛
+The AI is defeated, and I'm safe—thanks to you!
+You’ve saved me from the chamber.
+Victory unlocked! 🎉
+`;
 const wordsArrayDescription = [ // Words as an objects
     {word: "Development", hint: "Something that programmers do"},  //Valentina: grammar error, "doing" is not correct; changed to "do"
     {word: "Flowers", hint: "Good gift for girls"},
