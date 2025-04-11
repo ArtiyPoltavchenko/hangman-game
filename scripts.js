@@ -11,13 +11,15 @@
 
 //
 const introMsg1 = `
-
 `;
 const introMsg2 = `
 
 `;
 const gameTitle = "";
 const gameOverMsg = `
+
+`;
+const gameVictoryMsg = `
 
 `;
 
@@ -157,7 +159,8 @@ function checkErrors(userInput){
 
 
 function renderWhileGaming(){
-    let msgBuilder = hangmanFrames[attemptsLeft]; // hangman frames
+    let msgBuilder = gameTitle + "\n";
+    msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
     msgBuilder += ("\nHint: " + chosenWord.hint);
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
@@ -167,8 +170,11 @@ function renderWhileGaming(){
 }
 
 function renderOnGameOver(){
-    let msgBuilder = "";
-    msgBuilder += ("\n Game over. Better luck next time."); 
+    let msgBuilder = `        ________[GAME OVER]________     
+    ${hangmanFrames[0]}
+    The word was: ${chosenWord.word}
+    ${gameOverMsg}`;
+    
 
     return msgBuilder;
 }
@@ -200,7 +206,8 @@ function isPlayerWon(){
 
 // ------------------------ GAME ENGINE START --------------------------
 
-
+    alert(introMsg1);
+    alert(introMsg2);
     while(isGameOver === false && isPlayerWon() === false){
         //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
         let rawInput = prompt(renderWhileGaming(isGameOver));
@@ -214,8 +221,9 @@ function isPlayerWon(){
         }
     }
     if(isPlayerWon() === true){
-        msgBuilder = "Congratulations, you won!\n";
-        msgBuilder += "Your word is: \n";
+        let msgBuilder = gameTitle;
+        msgBuilder += gameVictoryMsg;
+        msgBuilder += "\nYour word is: \n";
         msgBuilder += (drawGuessingWord() + "\n");
         msgBuilder += hangamWonFrame;
         alert(msgBuilder);
