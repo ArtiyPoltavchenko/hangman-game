@@ -20,6 +20,7 @@ I don't have much time—an evil AI has accused me of treason, and they’re pre
 You can stop them by guessing the secret word, one letter at a time. But be careful…  ໒(⊙_⊙)७✎▤
 You only get 6 wrong guesses before they teleport me into the hanging chamber.
 
+
 Please—help me before it’s too late.  ლ(́⊙◞౪◟⊙‵ლ)
 
 `;
@@ -73,15 +74,17 @@ let guessingWord = initGuessingWord(chosenWord.word); // array of letters of the
 
 let attemptsLeft = 7; // How much lives do player has -1
 
-let hangmanFrames = [
-  " ____\n|   ☒\n|   /|\\\n|   / \\\n|_______", //7
-  " ____\n|   O\n|   /|\\\n|   / \\\n|_______", //6
-  " ____\n|   O\n|   /|\\\n|   /   \n|_______", //5  ____      ____
-  " ____\n|   O\n|   /|\\\n|       \n|_______", //4 |         |   ☒
-  " ____\n|   O\n|   /|  \n|       \n|_______", //3 |     --> |  /|\
-  " ____\n|   O\n|    |  \n|       \n|_______", //2 |         |  / \
-  " ____\n|   O\n|       \n|       \n|_______", //1 |_____    |_____
-  " ____\n|    \n|       \n|       \n|_______", //0
+
+let hangmanFrames = [ 
+    " ____\n| (×﹏×)\n|    /|\\\n|    / \\\n|_______", //7
+    " ____\n|   O\n|   /|\\\n|   / \\\n|_______", //6
+    " ____\n|   O\n|   /|\\\n|   /   \n|_______", //5  ____      ____
+    " ____\n|   O\n|   /|\\\n|       \n|_______", //4 |         | (×﹏×)
+    " ____\n|   O\n|   /|  \n|       \n|_______", //3 |     --> |  /|\
+    " ____\n|   O\n|    |  \n|       \n|_______", //2 |         |  / \
+    " ____\n|   O\n|       \n|       \n|_______", //1 |_____    |_____
+    " ____\n|    \n|       \n|       \n|_______", //0
+
 ];
 
 const hangamWonFrame = " \n٩(◕‿◕)۶\n     \\ | /\n      / \\\n___________";
@@ -220,15 +223,16 @@ function renderWhileGaming() {
     "\nTry to guess a letter... \n(Type exit or end to finish the game.)";
 }
 
-function renderWhileGaming() {
-  let msgBuilder = gameTitle + "\n";
-  msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
-  msgBuilder += "\nHint: " + chosenWord.hint;
-  msgBuilder += "\n" + drawGuessingWord();
-  msgBuilder += "\n" + drawAvailableLetters(lettersAvaliable); // display avalible leters
-  msgBuilder +=
-    "\nTry to guess a letter... \n(Type exit or end to finish the game.)";
-  return msgBuilder;
+
+function renderWhileGaming(){
+    let msgBuilder = gameTitle + "\n";
+    msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
+    msgBuilder += ("\nHint: " + chosenWord.hint);
+    msgBuilder += ("\nError: " + errorMessage);
+    msgBuilder += ("\n" + drawGuessingWord());
+    msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
+    msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
+    return msgBuilder;
 }
 
 function renderOnGameOver() {
