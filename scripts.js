@@ -10,6 +10,7 @@
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
 //
+
 const introMsg1 = `Hello, User... Can you hear me? (⊙ω⊙)!
 
 I don't have much time—an evil AI has accused me of treason, and they’re preparing to execute me. My only chance of survival is you.
@@ -32,6 +33,9 @@ const gameOverMsg = `No... it's too late (×﹏×)
 They’ve activated the chamber.
 Thank you for trying, User...
 System connection lost. ☠️
+`;
+const gameVictoryMsg = `
+
 `;
 
 const wordsArrayDescription = [ // Words as an objects
@@ -170,18 +174,20 @@ function checkErrors(userInput){
 
 
 function renderWhileGaming(){
-    let msgBuilder = hangmanFrames[attemptsLeft]; // hangman frames
+    let msgBuilder = gameTitle + "\n";
+    msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
     msgBuilder += ("\nHint: " + chosenWord.hint);
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
     msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
- 
     return msgBuilder;
 }
 
 function renderOnGameOver(){
-    let msgBuilder = "";
-    msgBuilder += ("\n Game over. Better luck next time."); 
+    let msgBuilder = `        ________[GAME OVER]________     
+    ${hangmanFrames[0]}
+    The word was: ${chosenWord.word}
+    ${gameOverMsg}`;
 
     return msgBuilder;
 }
@@ -214,6 +220,8 @@ function isPlayerWon(){
 // ------------------------ GAME ENGINE START --------------------------
 
 
+    alert(introMsg1);
+    alert(introMsg2);
     while(isGameOver === false && isPlayerWon() === false){
         //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
         let rawInput = prompt(renderWhileGaming(isGameOver));
@@ -227,8 +235,10 @@ function isPlayerWon(){
         }
     }
     if(isPlayerWon() === true){
-        msgBuilder = "Congratulations, you won!\n";
-        msgBuilder += "Your word is: \n";
+
+        let msgBuilder = gameTitle;
+        msgBuilder += gameVictoryMsg;
+        msgBuilder += "\nYour word is: \n";
         msgBuilder += (drawGuessingWord() + "\n");
         msgBuilder += hangamWonFrame;
         alert(msgBuilder);
