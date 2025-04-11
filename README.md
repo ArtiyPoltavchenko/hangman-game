@@ -1,5 +1,6 @@
 
-【The Hangman】: The Quiz Thriller ໒(⊙ᴗ⊙)७✎▤
+【The Hangman】: The Quiz Thriller (づ ◕‿◕ )づ
+
 By Valentina, Yasmin & Arsentii
 
 🔧 Tech Stack & Features
