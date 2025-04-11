@@ -1,5 +1,6 @@
+ⓣⓗⓔ ⓗⓐⓝⓖⓜⓐⓝ (づ ◕‿◕ )づ 
 
-【The Hangman】: The Quiz Thriller (づ ◕‿◕ )づ 
+【The Hangman】: The Quiz Thriller 
 
 By Valentina, Yasmin & Arsentii
 ❗Game rules:
