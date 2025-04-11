@@ -9,6 +9,18 @@
 // OUTDATED
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
+//
+const introMsg1 = `
+
+`;
+const introMsg2 = `
+
+`;
+const gameTitle = "";
+const gameOverMsg = `
+
+`;
+
 const wordsArrayDescription = [ // Words as an objects
     {word: "Development", hint: "Something that programmers do"},  //Valentina: grammar error, "doing" is not correct; changed to "do"
     {word: "Flowers", hint: "Good gift for girls"},
@@ -103,7 +115,7 @@ function isAvailable(input){
 }
 
 function writeLetterIfExists(userInput){
-    isExists = false;
+    let isExists = false;
     for (let i = 0; i < chosenWord.word.length; i++) {
         if(chosenWord.word[i] === userInput){
             guessingWord[i] = userInput;
