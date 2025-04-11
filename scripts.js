@@ -10,15 +10,34 @@
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
 //
-const introMsg1 = `
+
+const introMsg1 = `Hello, User... Can you hear me? (⊙ω⊙)!
+
+I don't have much time—an evil AI has accused me of treason, and they’re preparing to execute me. My only chance of survival is you.
+
+You can stop them by guessing the secret word, one letter at a time. But be careful… ໒(⊙_⊙)७✎▤
+You only get 6 wrong guesses before they teleport me into the hanging chamber.
+
+Please—help me before it’s too late. ლ(́⊙◞౪◟⊙‵ლ)
 
 `;
-const introMsg2 = `
-
+const introMsg2 = ` Instructions:
+Guess one letter at a time
+Wrong guesses = lost lives
+You have 6 lives
+Guess the word to win!
 `;
-const gameTitle = "";
-const gameOverMsg = `
+const gameTitle = "【☈ The Hangman 웃】";
 
+const gameOverMsg = `No... it's too late (×﹏×)
+They’ve activated the chamber.
+Thank you for trying, User...
+System connection lost. ☠️
+`;
+const gameVictoryMsg = `You did it! ┏ ( ˘ω˘ )┛
+The AI is defeated, and I'm safe—thanks to you!
+You’ve saved me from the chamber.
+Victory unlocked! 🎉
 `;
 
 const wordsArrayDescription = [
@@ -191,58 +210,81 @@ function renderWhileGaming() {
   msgBuilder +=
     "\nTry to guess a letter... \n(Type exit or end to finish the game.)";
 
-  return msgBuilder;
-}
-
-function renderOnGameOver() {
-  let msgBuilder = "";
-  msgBuilder += "\n Game over. Better luck next time.";
-
-  return msgBuilder;
-}
-
-// function renderTextOutput(isGameOver){
-//     let msgBuilder = (`Attempts left: ${attemptsLeft}`);
-//     if(errorMessage !== null){
-//         msgBuilder += (errorMessage + "\n"); // writing error msg if exists
-//     }
-//     msgBuilder += renderWhileGaming();
-//     //isGameOver === false ? msgBuilder += renderWhileGaming() : msgBuilder += renderOnGameOver();
-
-//     return msgBuilder;
-// }
-
-function isPlayerWon() {
-  let word = guessingWord.filter((letter) => letter === "_");
-  if (word.length > 0) {
-    return false;
-  } else {
-    return true;
-  }
-}
-
-// ------------------ FUNCTIONS SECTION END ---------------------------
-
-// ------------------------ GAME ENGINE START --------------------------
-
-while (isGameOver === false && isPlayerWon() === false) {
-  //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
-  let rawInput = prompt(renderWhileGaming(isGameOver));
-  let checkedInput = checkCorrectInput(rawInput.toUpperCase());
-  if (checkedInput !== null) {
-    replaceLettersInRender(checkedInput, lettersAvaliable);
+  function renderWhileGaming() {
+    let msgBuilder = gameTitle + "\n";
+    msgBuilder += hangmanFrames[attemptsLeft]; // hangman frames
+    msgBuilder += "\nHint: " + chosenWord.hint;
+    msgBuilder += "\n" + drawGuessingWord();
+    msgBuilder += "\n" + drawAvailableLetters(lettersAvaliable); // display avalible leters
+    msgBuilder +=
+      "\nTry to guess a letter... \n(Type exit or end to finish the game.)";
+    return msgBuilder;
   }
 
-  if (attemptsLeft < 1) {
-    isGameOver = true;
+  function renderOnGameOver() {
+    let msgBuilder = `        ________[GAME OVER]________     
+    ${hangmanFrames[0]}
+    The word was: ${chosenWord.word}
+    ${gameOverMsg}`;
+
+    return msgBuilder;
   }
-}
-if (isPlayerWon() === true) {
-  msgBuilder = "Congratulations, you won!\n";
-  msgBuilder += "Your word is: \n";
-  msgBuilder += drawGuessingWord() + "\n";
-  msgBuilder += hangamWonFrame;
-  alert(msgBuilder);
-} else {
-  alert(renderOnGameOver());
+
+  // function renderTextOutput(isGameOver){
+  //     let msgBuilder = (`Attempts left: ${attemptsLeft}`);
+  //     if(errorMessage !== null){
+  //         msgBuilder += (errorMessage + "\n"); // writing error msg if exists
+  //     }
+  //     msgBuilder += renderWhileGaming();
+  //     //isGameOver === false ? msgBuilder += renderWhileGaming() : msgBuilder += renderOnGameOver();
+
+  //     return msgBuilder;
+  // }
+
+  function isPlayerWon() {
+    let word = guessingWord.filter((letter) => letter === "_");
+    if (word.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // ------------------ FUNCTIONS SECTION END ---------------------------
+
+  // ------------------------ GAME ENGINE START --------------------------
+
+  while (isGameOver === false && isPlayerWon() === false) {
+    //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
+    let rawInput = prompt(renderWhileGaming(isGameOver));
+    let checkedInput = checkCorrectInput(rawInput.toUpperCase());
+    if (checkedInput !== null) {
+      replaceLettersInRender(checkedInput, lettersAvaliable);
+    }
+
+    alert(introMsg1);
+    alert(introMsg2);
+    while (isGameOver === false && isPlayerWon() === false) {
+      //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
+      let rawInput = prompt(renderWhileGaming(isGameOver));
+      let checkedInput = checkCorrectInput(rawInput.toUpperCase());
+      if (checkedInput !== null) {
+        replaceLettersInRender(checkedInput, lettersAvaliable);
+      }
+
+      if (attemptsLeft < 1) {
+        isGameOver = true;
+      }
+    }
+    if (isPlayerWon() === true) {
+      let msgBuilder = gameTitle;
+      msgBuilder += gameVictoryMsg;
+      msgBuilder += "\nYour word is: \n";
+      msgBuilder += drawGuessingWord() + "\n";
+      msgBuilder += hangamWonFrame;
+      alert(msgBuilder);
+    } else {
+      alert(renderOnGameOver());
+    }
+  }
 }
