@@ -1,5 +1,5 @@
-ⓣⓗⓔ ⓗⓐⓝⓖⓜⓐⓝ (づ ◕‿◕ )づ 
 
+(づ ◕‿◕ )づ 
 【The Hangman】: The Quiz Thriller 
 
 By Valentina, Yasmin & Arsentii
