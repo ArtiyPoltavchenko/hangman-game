@@ -56,7 +56,7 @@ const wordsArrayDescription = [
   { word: "Boolean", hint: "Something with two faces" },
   { word: "Syntax", hint: "The grammar police of your code" },
   { word: "Algorithm", hint: "It’s your code’s plan of attack" },
-  { word: "Undefined", hint: "	It exists, but it doesn’t have a clue yet" },
+  { word: "Undefined", hint: "It exists, but it doesn’t have a clue yet" },
   { word: "Iterator", hint: "It’s polite — always knows where it left off" },
   // {word: "Flowers", hint: "Good gift for girls"},
 ];
@@ -74,10 +74,10 @@ let guessingWord = initGuessingWord(chosenWord.word); // array of letters of the
 let attemptsLeft = 7; // How much lives do player has -1
 
 let hangmanFrames = [
-  " ____\n|   ☒\n|   /|\\\n|   / \\\n|_______", //7
+  " ____\n| (×﹏×)\n|    /|\\\n|    / \\\n|_______", //7
   " ____\n|   O\n|   /|\\\n|   / \\\n|_______", //6
   " ____\n|   O\n|   /|\\\n|   /   \n|_______", //5  ____      ____
-  " ____\n|   O\n|   /|\\\n|       \n|_______", //4 |         |   ☒
+  " ____\n|   O\n|   /|\\\n|       \n|_______", //4 |         | (×﹏×)
   " ____\n|   O\n|   /|  \n|       \n|_______", //3 |     --> |  /|\
   " ____\n|   O\n|    |  \n|       \n|_______", //2 |         |  / \
   " ____\n|   O\n|       \n|       \n|_______", //1 |_____    |_____
@@ -87,32 +87,9 @@ let hangmanFrames = [
 const hangamWonFrame = " \n٩(◕‿◕)۶\n     \\ | /\n      / \\\n___________";
 
 let lettersAvaliable = [
-  "Q",
-  "W",
-  "E",
-  "R",
-  "T",
-  "Y",
-  "U",
-  "I",
-  "O",
-  "P",
-  "A",
-  "S",
-  "D",
-  "F",
-  "G",
-  "H",
-  "J",
-  "K",
-  "L",
-  "Z",
-  "X",
-  "C",
-  "V",
-  "B",
-  "N",
-  "M",
+  "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P",
+   "A", "S", "D", "F", "G", "H", "J", "K", "L", 
+   "Z", "X", "C", "V", "B", "N", "M",
 ]; //3 rows, ~9 collums
 
 // ------------------ SETTINGS SECTION END ---------------------------
@@ -263,15 +240,6 @@ function isPlayerWon() {
 // ------------------ FUNCTIONS SECTION END ---------------------------
 
 // ------------------------ GAME ENGINE START --------------------------
-console.log(isGameOver);
-console.log(isPlayerWon());
-while (isGameOver === false && isPlayerWon() === false) {
-  //replaceLettersInRender(prompt(drawAvailableLetters(lettersAvaliable)), lettersAvaliable);
-  let rawInput = prompt(renderWhileGaming(isGameOver));
-  let checkedInput = checkCorrectInput(rawInput.toUpperCase());
-  if (checkedInput !== null) {
-    replaceLettersInRender(checkedInput, lettersAvaliable);
-  }
 
   alert(introMsg1);
   alert(introMsg2);
@@ -297,4 +265,4 @@ while (isGameOver === false && isPlayerWon() === false) {
   } else {
     alert(renderOnGameOver());
   }
-}
+
