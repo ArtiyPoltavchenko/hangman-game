@@ -10,14 +10,29 @@
 // const wordsArray = ["Development", "Computer", "Powercoders", "MacBook", "Flowers"];
 
 //
-const introMsg1 = `
-`;
-const introMsg2 = `
+
+const introMsg1 = `Hello, User... Can you hear me? (⊙ω⊙)!
+
+I don't have much time—an evil AI has accused me of treason, and they’re preparing to execute me. My only chance of survival is you.
+
+You can stop them by guessing the secret word, one letter at a time. But be careful… ໒(⊙_⊙)७✎▤
+You only get 6 wrong guesses before they teleport me into the hanging chamber.
+
+Please—help me before it’s too late. ლ(́⊙◞౪◟⊙‵ლ)
 
 `;
-const gameTitle = "";
-const gameOverMsg = `
+const introMsg2 = ` Instructions:
+Guess one letter at a time
+Wrong guesses = lost lives
+You have 6 lives
+Guess the word to win!
+`;
+const gameTitle = "【☈ The Hangman 웃】";
 
+const gameOverMsg = `No... it's too late (×﹏×)
+They’ve activated the chamber.
+Thank you for trying, User...
+System connection lost. ☠️
 `;
 const gameVictoryMsg = `
 
@@ -165,7 +180,6 @@ function renderWhileGaming(){
     msgBuilder += ("\n" + drawGuessingWord());
     msgBuilder += ("\n" + drawAvailableLetters(lettersAvaliable)); // display avalible leters
     msgBuilder += ("\nTry to guess a letter... \n(Type exit or end to finish the game.)");
- 
     return msgBuilder;
 }
 
@@ -174,7 +188,6 @@ function renderOnGameOver(){
     ${hangmanFrames[0]}
     The word was: ${chosenWord.word}
     ${gameOverMsg}`;
-    
 
     return msgBuilder;
 }
@@ -206,6 +219,7 @@ function isPlayerWon(){
 
 // ------------------------ GAME ENGINE START --------------------------
 
+
     alert(introMsg1);
     alert(introMsg2);
     while(isGameOver === false && isPlayerWon() === false){
@@ -221,6 +235,7 @@ function isPlayerWon(){
         }
     }
     if(isPlayerWon() === true){
+
         let msgBuilder = gameTitle;
         msgBuilder += gameVictoryMsg;
         msgBuilder += "\nYour word is: \n";
