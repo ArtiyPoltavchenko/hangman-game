@@ -11,30 +11,39 @@
 
 //
 
-const introMsg1 = `Hello, User... Can you hear me? (⊙ω⊙)!
+const introMsg1 = `【 ☈ The Hangman 웃 】
+
+Hello, User... Can you hear me?  (⊙ω⊙)!
 
 I don't have much time—an evil AI has accused me of treason, and they’re preparing to execute me. My only chance of survival is you.
 
-You can stop them by guessing the secret word, one letter at a time. But be careful… ໒(⊙_⊙)७✎▤
+You can stop them by guessing the secret word, one letter at a time. But be careful…  ໒(⊙_⊙)७✎▤
 You only get 6 wrong guesses before they teleport me into the hanging chamber.
 
-Please—help me before it’s too late. ლ(́⊙◞౪◟⊙‵ლ)
+Please—help me before it’s too late.  ლ(́⊙◞౪◟⊙‵ლ)
 
 `;
-const introMsg2 = ` Instructions:
+const introMsg2 = `【 Instructions 】
+
 Guess one letter at a time
 Wrong guesses = lost lives
 You have 6 lives
 Guess the word to win!
+
+▔\▁((.′◔_′◔.))▁/▔
+
 `;
 const gameTitle = "【☈ The Hangman 웃】";
 
-const gameOverMsg = `No... it's too late (×﹏×)
+const gameOverMsg = `
+No... it's too late (×﹏×)
 They’ve activated the chamber.
 Thank you for trying, User...
 System connection lost. ☠️
 `;
-const gameVictoryMsg = `You did it! ┏ ( ˘ω˘ )┛
+const gameVictoryMsg = `
+
+You did it! ┏ ( ˘ω˘ )┛
 The AI is defeated, and I'm safe—thanks to you!
 You’ve saved me from the chamber.
 Victory unlocked! 🎉
