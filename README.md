@@ -1,7 +1,15 @@
 
-【The Hangman】: The Quiz Thriller (づ ◕‿◕ )づ
+**【The Hangman】: The Quiz Thriller (づ ◕‿◕ )づ **
 
 By Valentina, Yasmin & Arsentii
+❗Game rules:
+- Guess one letter at a time
+- Wrong guesses = lost lives
+- You have 6 lives (attempts)
+- Guess the word to win!
+
+▔\▁((.′◔_′◔.))▁/▔
+
 
 🔧 Tech Stack & Features
 - Language: JavaScript 
